@@ -1,0 +1,132 @@
+<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="WebForm1.aspx.vb" Inherits="WebApplication1.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        Enter the number of newly hired males:
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtNewMale" runat="server" Text=""></asp:TextBox>
+                    </td>
+                 </tr>
+                <tr>
+                    <td>
+                        Enter the number of newly hired females:
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtNewFemale" runat="server" Text=""></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Enter the number of permanent position males:
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtPermMale" runat="server" Text=""></asp:TextBox>
+                    </td>
+                </tr>    
+                <tr>
+                    <td>
+                        Enter the number of permanent position females:
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtPermFemale" runat="server" Text=""></asp:TextBox>
+                    </td>
+                </tr>    
+                <tr>
+                    <td>
+                        Enter the number of resigned males:
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtResMale" runat="server" Text=""></asp:TextBox>
+                    </td>
+                    
+                </tr>    
+                <tr>
+                    <td>
+                         Enter the number of resigned females:
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtResFemale" runat="server" Text=""></asp:TextBox>
+                    </td>
+                </tr>  
+                <tr>
+                    <td></td>
+                    <td>
+                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <br />
+            ===
+            <br />
+            Thank you for the information
+            <br />
+            ===
+            <br />
+            Here is the Summary!!!
+            <br />
+            <br />
+            <div>
+                Number of hired employee = <asp:TextBox ID="txtTotNew" runat="server" ReadOnly="true"></asp:TextBox><br />
+                Male = <asp:TextBox ID="txtNewPerMale" runat="server" ReadOnly="true"></asp:TextBox>% <br />
+                Female = <asp:TextBox ID="txtNewPerFemale" runat="server" ReadOnly="true"></asp:TextBox>% <br />
+            </div>
+            <br />
+            <br />
+            <div>
+                Number of Permanent Employee = <asp:TextBox ID="txtTotPerm" runat="server" ReadOnly="true"></asp:TextBox><br />
+                Male = <asp:TextBox ID="txtPermPerMale" runat="server" ReadOnly="true"></asp:TextBox>% <br />
+                Female = <asp:TextBox ID="txtPermPerFemale" runat="server" ReadOnly="true"></asp:TextBox>% <br />
+            </div>
+            <br />
+            <br />
+            <div>
+                Number of Resigned Employee = <asp:TextBox ID="txtTotRes" runat="server" ReadOnly="true"></asp:TextBox><br />
+                Male = <asp:TextBox ID="txtResPerMale" runat="server" ReadOnly="true"></asp:TextBox>% <br />
+                Female = <asp:TextBox ID="txtResPerFemale" runat="server" ReadOnly="true"></asp:TextBox>% <br />
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>
+
+'Code behind - VB.Net
+Public Class WebForm1
+    Inherits System.Web.UI.Page
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Not IsPostBack Then
+
+        End If
+    End Sub
+
+    Protected Sub btnSubmit_Click(sender As Object, e As EventArgs)
+        'Computation for Newly Hired
+        txtTotNew.Text = Val(txtNewMale.Text) + Val(txtNewFemale.Text)
+        txtNewPerMale.Text = (Val(txtNewMale.Text) / Val(txtTotNew.Text)) * 100
+        txtNewPerFemale.Text = (Val(txtNewFemale.Text) / Val(txtTotNew.Text)) * 100
+
+        'Computation for Permanet Hired
+        txtTotPerm.Text = Val(txtPermMale.Text) + Val(txtPermFemale.Text)
+        txtPermPerMale.Text = (Val(txtPermMale.Text) / Val(txtTotPerm.Text)) * 100
+        txtPermPerFemale.Text = (Val(txtPermFemale.Text) / Val(txtTotPerm.Text)) * 100
+
+        'Computation for resigned Employee
+        txtTotRes.Text = Val(txtResMale.Text) + Val(txtResFemale.Text)
+        txtResPerMale.Text = (Val(txtResMale.Text) / Val(txtTotRes.Text)) * 100
+        txtResPerFemale.Text = (Val(txtResFemale.Text) / Val(txtTotRes.Text)) * 100
+
+    End Sub
+End Class
